@@ -8,10 +8,11 @@ interface Props {
 const Result = ({ weather }: Props) => {
   return (
     <div className="Result">
-      <img
-        src={`http://openweathermap.org/img/wn/${weather?.current.weather[0].icon}@2x.png`}
-        alt={weather?.current.weather[0].description}
-      />
+      {/* <img
+        src={`http://openweathermap.org/img/wn/${weather?.weather[0].icon}@2x.png`}
+        alt={weather?.weather[0].description}
+      /> */}
+      <h1>{weather?.name}</h1>
     </div>
   );
 };

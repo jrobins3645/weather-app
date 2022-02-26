@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 import WeatherResponse from "../models/WeatherResponse";
-import { getImperialByCoords } from "../services/WeatherService";
+import {
+  getImperialByCity,
+  getImperialByCoords,
+  getMetrictByCoords,
+} from "../services/WeatherService";
 import "./Main.css";
 import Result from "./Result";
+import Search from "./Search";
+// import Search from "./Search";
 
 const Main = () => {
   const [location, setLocation] = useState("");
@@ -11,16 +17,15 @@ const Main = () => {
   useEffect(() => {
     if (!location) {
       navigator.geolocation.getCurrentPosition((response) => {
-        const coords = `${response.coords.latitude},${response.coords.longitude}`;
         let lat = response.coords.latitude;
         let lon = response.coords.longitude;
-        setLocation(coords);
         getImperialByCoords(lat, lon).then((response) => {
           setWeather(response);
         });
+
       });
     } else {
-      getImperialByCoords(51, 0).then((response) => {
+      getImperialByCity(location).then((response) => {
         setWeather(response);
       });
     }
@@ -28,9 +33,8 @@ const Main = () => {
 
   return (
     <div className="Main">
+      <Search setLocation={setLocation}/>
       <Result weather={weather} />
-      <h1>{location}</h1>
-      <h1>{weather?.current.temp}</h1>
     </div>
   );
 };

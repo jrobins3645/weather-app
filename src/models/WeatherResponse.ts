@@ -5,18 +5,23 @@ interface Weather {
     icon: string
 }
 
-interface Current {
-    sunrise: number;
-    sunset: number;
+interface Coord {
+    lat: number;
+    lon: number;
+}
+
+interface Main {
     temp: number;
-    feels_like: number;
-    pressure: number;
-    humidity: number;
-    clouds: number;
-    weather: Weather[];
+    feels_like:number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number
+    humidity: number
 }
 
 export default interface WeatherResponse {
-    current: Current;
-    timezone: string
+    weather: Weather[];
+    coord: Coord
+    main: Main
+    name: string
 }

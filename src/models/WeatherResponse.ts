@@ -19,3 +19,7 @@ export default interface WeatherResponse {
   main: Main;
   name: string;
 }
+
+
+
+

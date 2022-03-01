@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import WeatherResponse from "../models/WeatherResponse";
-import { getImperialWeather } from "../services/WeatherService";
+import {
+  // getImperialWeatherByCity,
+  getImperialWeatherOneCall,
+} from "../services/WeatherService";
 import "./Main.css";
 import Result from "./Result";
 
@@ -15,12 +18,13 @@ const Main = () => {
         let lat = response.coords.latitude;
         let lon = response.coords.longitude;
         setLocation(coords);
-        getImperialWeather(lat, lon).then((response) => {
+        console.log(response);
+        getImperialWeatherOneCall(lat, lon).then((response) => {
           setWeather(response);
         });
       });
     } else {
-      getImperialWeather(51, 0).then((response) => {
+      getImperialWeatherOneCall(0, 51).then((response) => {
         setWeather(response);
       });
     }
@@ -29,8 +33,7 @@ const Main = () => {
   return (
     <div className="Main">
       <Result weather={weather} />
-      <h1>{location}</h1>
-      <h1>{weather?.current.temp}</h1>
+      
     </div>
   );
 };

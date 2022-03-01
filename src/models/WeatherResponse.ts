@@ -1,22 +1,21 @@
 interface Weather {
-    id: number;
-    main: string;
-    description: string;
-    icon: string
+  id: number;
+  main: string;
+  description: string;
+  icon: string;
 }
 
-interface Current {
-    sunrise: number;
-    sunset: number;
-    temp: number;
-    feels_like: number;
-    pressure: number;
-    humidity: number;
-    clouds: number;
-    weather: Weather[];
+interface Main {
+  temp: number;
+  feels_like: number;
+  temp_min: number;
+  temp_max: number;
+  pressure: number;
+  humidity: number;
 }
 
 export default interface WeatherResponse {
-    current: Current;
-    timezone: string
+  weather: Weather;
+  main: Main;
+  name: string;
 }

@@ -3,32 +3,13 @@ import WeatherResponse from "../models/WeatherResponse";
 
 const key = process.env.REACT_APP_WEATHER_KEY || "";
 
-export const getMetrictWeather = (
+export const getImperialWeatherOneCall = (
   lat: number,
   lon: number
 ): Promise<WeatherResponse> => {
   // return a weather response using axios
   return axios
-    .get("http://api.weatherapi.com/v1/current.json", {
-      params: {
-        lat: lat,
-        lon: lon,
-        AP: key,
-        units: "metric",
-      },
-    })
-    .then((response) => {
-      return response.data;
-    });
-};
-
-export const getImperialWeather = (
-  lat: number,
-  lon: number
-): Promise<WeatherResponse> => {
-  // return a weather response using axios
-  return axios
-    .get("https://api.openweathermap.org/data/2.5/onecall", {
+    .get("https://api.openweathermap.org/data/2.5/weather", {
       params: {
         lat: lat,
         lon: lon,
@@ -40,3 +21,21 @@ export const getImperialWeather = (
       return response.data;
     });
 };
+
+
+// export const getImperialWeatherByCity = (
+//   city: string
+// ): Promise<WeatherResponse> => {
+//   // return a weather response using axios
+//   return axios
+//     .get("api.openweathermap.org/data/2.5/weather", {
+//       params: {
+//         q: city,
+//         appid: key,
+//         units: "imperial",
+//       },
+//     })
+//     .then((response) => {
+//       return response.data;
+//     });
+// };

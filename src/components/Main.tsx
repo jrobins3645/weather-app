@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import WeatherResponse from "../models/WeatherResponse";
 import {
-  getImperialByCity,
-  getImperialByCoords,
-  getMetrictByCoords,
+  // getImperialWeatherByCity,
+  getImperialWeatherOneCall,
 } from "../services/WeatherService";
 import "./Main.css";
 import Result from "./Result";
-import Search from "./Search";
 // import Search from "./Search";
 
 const Main = () => {
@@ -19,13 +17,14 @@ const Main = () => {
       navigator.geolocation.getCurrentPosition((response) => {
         let lat = response.coords.latitude;
         let lon = response.coords.longitude;
-        getImperialByCoords(lat, lon).then((response) => {
+        setLocation(coords);
+        console.log(response);
+        getImperialWeatherOneCall(lat, lon).then((response) => {
           setWeather(response);
         });
-
       });
     } else {
-      getImperialByCity(location).then((response) => {
+      getImperialWeatherOneCall(0, 51).then((response) => {
         setWeather(response);
       });
     }

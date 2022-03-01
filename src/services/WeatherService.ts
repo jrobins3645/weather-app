@@ -3,7 +3,6 @@ import WeatherResponse from "../models/WeatherResponse";
 
 const key = process.env.REACT_APP_WEATHER_KEY || "";
 
-
 export const getImperialWeatherOneCall = (
   lat: number,
   lon: number
@@ -15,7 +14,7 @@ export const getImperialWeatherOneCall = (
         lat: lat,
         lon: lon,
         appi: key,
-        units: "metric",
+        units: "imperial",
       },
     })
     .then((response) => {
